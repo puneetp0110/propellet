@@ -67,7 +67,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         values.put(DataBaseNote.DESCRIPTION_NAME, descriptionName);
         values.put(DataBaseNote.DESCRIPTION_TIMESTATMP, descriptionTimestamp);
         values.put(DataBaseNote.TYPE_DESCRIPTION, typeDescription);
-
+        db.insert(DataBaseNote.TABLE_NAME,null,values);
         db.close();
     }
     /**

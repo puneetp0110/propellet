@@ -24,7 +24,7 @@
                     android:layout_height="50dp"
                     android:text="Temp"
                     android:textColor="#000"
-                    android:textSize="20dp"
+                    android:textSize="15dp"
                     android:id="@+id/medication_info"
                     android:layout_margin="5dp"
                     />
@@ -33,7 +33,7 @@
                     android:layout_height="50dp"
                     android:text="Temp"
                     android:textColor="#000"
-                    android:textSize="20dp"
+                    android:textSize="15dp"
                     android:id="@+id/medication_name"
                     android:layout_margin="5dp"
                     />
@@ -42,7 +42,7 @@
                     android:layout_height="50dp"
                     android:text="Temp"
                     android:textColor="#000"
-                    android:textSize="20dp"
+                    android:textSize="15dp"
                     android:id="@+id/medication_type"
                     android:layout_margin="5dp"
                     />
@@ -51,7 +51,7 @@
                     android:layout_height="50dp"
                     android:text="Temp"
                     android:textColor="#000"
-                    android:textSize="20dp"
+                    android:textSize="15dp"
                     android:id="@+id/medication_timestamp"
                     android:layout_margin="5dp"
                     />
