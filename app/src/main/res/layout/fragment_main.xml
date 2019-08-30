@@ -5,61 +5,52 @@
     android:layout_height="match_parent"
     tools:context=".fragments.MainFragment">
 
-    <androidx.core.widget.NestedScrollView
+    <LinearLayout
+        android:id="@+id/ll_main"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <HorizontalScrollView
-            xmlns:android="http://schemas.android.com/apk/res/android"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent">
+            android:layout_marginHorizontal="10dp"
+            android:text="ID"
+            android:textColor="#000"
+            android:textSize="20dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:textSize="20dp"
+            android:text="Name"
+            android:layout_marginHorizontal="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:textSize="20dp"
+            android:text="Type"
+            android:layout_marginHorizontal="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:textSize="20dp"
+            android:text="TimeStamp"
+            android:layout_marginHorizontal="10dp"/>
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
-
-                    <LinearLayout
-                        android:id="@+id/ll_main"
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:text="ID"
-                            android:textColor="#000"
-                            android:textSize="20dp" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="#000"
-                            android:textSize="20dp"
-                            android:text="Name"
-                            android:layout_margin="10dp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="#000"
-                            android:textSize="20dp"
-                            android:text="Type"
-                            android:layout_margin="10dp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="#000"
-                            android:textSize="20dp"
-                            android:text="TimeStamp"
-                            android:layout_margin="10dp"/>
-
-                    </LinearLayout>
 
                     <FrameLayout
                         android:layout_width="match_parent"
@@ -68,10 +59,6 @@
                     </FrameLayout>
 
                 </LinearLayout>
-
-            </LinearLayout>
-
-        </HorizontalScrollView>
 
     </androidx.core.widget.NestedScrollView>
 
