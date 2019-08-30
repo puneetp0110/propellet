@@ -3,4 +3,9 @@
     <color name="colorPrimary">#850000</color>
     <color name="colorPrimaryDark">#570030</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="colorText">#000000</color>
+    <color name="backgroundColor">#00aa96</color>
+    <color name="buttonTextColor">#707070</color>
+    <color name="textViewColor">#000000</color>
+    <color name="hintColor">#707070</color>color>
 </resources>

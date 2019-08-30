@@ -66,6 +66,12 @@ public class MedicationDetailsFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+    /**
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return View so that data can be rendered on screen.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -75,6 +81,9 @@ public class MedicationDetailsFragment extends Fragment {
             HomeActivity homeActivity = (HomeActivity) activity;
             db=homeActivity.getDb();
         }
+        /**
+         * RecyclerView for loading dynamic data on view.
+         */
         RecyclerView recyclerView = v.findViewById(R.id.recyclerMedication);
         recyclerView.setHasFixedSize(true);
         ArrayList<Medications> medicationsList = new ArrayList<>();
@@ -91,13 +100,9 @@ public class MedicationDetailsFragment extends Fragment {
         return v;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onMedicationDetailsFragmentInteraction(uri);
-        }
-    }
-
+    /**
+     * @param context
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -109,6 +114,9 @@ public class MedicationDetailsFragment extends Fragment {
         }
     }
 
+    /**
+     *
+     */
     @Override
     public void onDetach() {
         super.onDetach();

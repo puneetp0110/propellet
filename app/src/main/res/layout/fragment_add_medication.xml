@@ -5,10 +5,98 @@
     android:layout_height="match_parent"
     tools:context=".fragments.AddMedicationFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="#92B7BF">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="10pt"
+                android:text="Add Medication"
+                android:textColor="#000"
+                android:textSize="20pt" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:orientation="vertical">
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="2"
+                    android:rowCount="3">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_row="0"
+                        android:layout_column="0"
+                        android:layout_margin="20dp"
+                        android:text="@string/medication_name"
+                        android:textColor="#000"
+                        android:textSize="20dp" />
+
+                    <EditText
+                        android:id="@+id/medicationNameText"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_row="0"
+                        android:layout_column="1"
+                        android:layout_margin="20dp"
+                        android:background="@drawable/buttons_shape"
+                        android:textColor="#000"
+                        android:textColorHint="@color/colorText"
+                        android:paddingHorizontal="10dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_row="1"
+                        android:layout_column="0"
+                        android:layout_margin="20dp"
+                        android:text="Medication Type"
+                        android:textColor="@color/textViewColor"
+                        android:textSize="20dp" />
+
+                    <EditText
+                        android:id="@+id/medicationTypeText"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_row="1"
+                        android:layout_column="1"
+                        android:layout_margin="20dp"
+                        android:background="@drawable/buttons_shape"
+                        android:textColor="@color/colorText"
+                        android:textColorHint="@color/colorText"
+                        android:paddingHorizontal="5dp"/>
+
+
+                </GridLayout>
+            </LinearLayout>
+            <Button
+                android:id="@+id/addMedicationBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/buttons_shape"
+                android:text="Add Medication"
+                android:textColor="@color/buttonTextColor"
+                android:layout_gravity="right"
+                android:padding="20dp"
+                android:layout_marginRight="20pt"/>
+        </LinearLayout>
+    </RelativeLayout>
+
 
 </FrameLayout>

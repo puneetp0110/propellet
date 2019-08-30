@@ -16,7 +16,18 @@ public class SplashActivity extends AppCompatActivity implements MedicationDetai
 
     DataBaseHelper db;
     private static int SPLASH_TIME_OUT = 5000;
-
+    /**
+        * Splash screen will be displayed for 5 seconds.
+        * API class is used to pull data from provided
+        * URL
+     */
+    /**
+     *
+     * @param savedInstanceState
+     * Splash screen will be displayed for 5 seconds.
+     * API class is used to pull data from provided
+     * URL
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,12 +44,20 @@ public class SplashActivity extends AppCompatActivity implements MedicationDetai
             }
         },SPLASH_TIME_OUT);
     }
-
+    /**
+     * @param uri
+     * onMedicationDetailsFragmentInteraction: Interface so methods can be
+     * imported in fragments.
+     */
     @Override
     public void onMedicationDetailsFragmentInteraction(Uri uri) {
 
     }
-
+    /**
+     * @param uri
+     * onMainFragmentInteraction: Interface so methods can be
+     * imported in fragments.
+     */
     @Override
     public void onMainFragmentInteraction(Uri uri) {
 

@@ -4,5 +4,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="add_medication">Add Medication</string>
-    <string name="title_activity_home_navigation">HomeNavigationActivity</string>
+    <string name="medication_name">Medication Name</string>
+    <string name="medication_hint">Medication Name</string>
+    <string name="medication_type">Medication Type</string>
 </resources>

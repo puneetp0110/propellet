@@ -1,16 +1,25 @@
 package com.example.medicationapp.fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.medicationapp.R;
+import com.example.medicationapp.activities.HomeActivity;
+import com.example.medicationapp.database.DataBaseHelper;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,7 +32,11 @@ import com.example.medicationapp.R;
 public class AddMedicationFragment extends Fragment {
 
     private OnAddMedicationFragmentInteractionListener mListener;
-
+    Button addMedicationBtn;
+    EditText medicationNameText;
+    EditText medicationTypeText;
+    Activity activity;
+    DataBaseHelper db;
     public AddMedicationFragment() {
         // Required empty public constructor
     }
@@ -49,20 +62,49 @@ public class AddMedicationFragment extends Fragment {
         }
     }
 
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return View
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_medication, container, false);
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onAddMedicationFragmentInteraction(uri);
+        View v = inflater.inflate(R.layout.fragment_add_medication, container, false);
+        activity = (HomeActivity)getActivity();
+        if(activity instanceof HomeActivity){
+            HomeActivity homeActivity = (HomeActivity) activity;
+            db=homeActivity.getDb();
         }
+        medicationNameText = (EditText)v.findViewById(R.id.medicationNameText);
+        medicationTypeText= (EditText)v.findViewById(R.id.medicationTypeText);
+        addMedicationBtn =(Button)v.findViewById(R.id.addMedicationBtn);
+        addMedicationBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                if( medicationNameText.getText().toString().trim().equals("") || medicationTypeText.getText().toString().trim().equals("") )
+                {
+
+                } else {
+                    String pattern = "yyyy-MM-dd";
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+                    String date = simpleDateFormat.format(new Date());
+                    db.insertNode(medicationNameText.getText().toString(), date,medicationTypeText.getText().toString());
+                    if(activity instanceof HomeActivity){
+                        HomeActivity homeActivity = (HomeActivity) activity;
+                        homeActivity.loadFragment(new MainFragment());
+                    }
+                }
+            }
+        });
+        return v;
     }
 
+    /**
+     * @param context
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -74,6 +116,9 @@ public class AddMedicationFragment extends Fragment {
         }
     }
 
+    /**
+     *
+     */
     @Override
     public void onDetach() {
         super.onDetach();
