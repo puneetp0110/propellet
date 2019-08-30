@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_medication"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <HorizontalScrollView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+
+            <LinearLayout
+                android:id="@+id/ll_main"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                // Add your dynamic views to this layout.
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="Temp"
+                    android:textColor="#000"
+                    android:textSize="20dp"
+                    android:id="@+id/medication_info"
+                    android:layout_margin="5dp"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="Temp"
+                    android:textColor="#000"
+                    android:textSize="20dp"
+                    android:id="@+id/medication_name"
+                    android:layout_margin="5dp"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="Temp"
+                    android:textColor="#000"
+                    android:textSize="20dp"
+                    android:id="@+id/medication_type"
+                    android:layout_margin="5dp"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="Temp"
+                    android:textColor="#000"
+                    android:textSize="20dp"
+                    android:id="@+id/medication_timestamp"
+                    android:layout_margin="5dp"
+                    />
+            </LinearLayout>
+
+        </HorizontalScrollView>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
