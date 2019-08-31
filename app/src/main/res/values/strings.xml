@@ -7,4 +7,5 @@
     <string name="medication_name">Medication Name</string>
     <string name="medication_hint">Medication Name</string>
     <string name="medication_type">Medication Type</string>
+    <string name="pick_date">Pick A Date</string>
 </resources>

@@ -1,24 +1,33 @@
 package com.example.medicationapp.fragments;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 
 import com.example.medicationapp.R;
 import com.example.medicationapp.activities.HomeActivity;
 import com.example.medicationapp.database.DataBaseHelper;
+import com.example.medicationapp.model.DataBaseNote;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -29,14 +38,16 @@ import java.util.Date;
  * Use the {@link AddMedicationFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AddMedicationFragment extends Fragment {
+public class AddMedicationFragment extends Fragment{
 
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
     private OnAddMedicationFragmentInteractionListener mListener;
     Button addMedicationBtn;
     EditText medicationNameText;
-    EditText medicationTypeText;
+    EditText datePickerText;
     Activity activity;
     DataBaseHelper db;
+    String date;
     public AddMedicationFragment() {
         // Required empty public constructor
     }
@@ -79,19 +90,38 @@ public class AddMedicationFragment extends Fragment {
             db=homeActivity.getDb();
         }
         medicationNameText = (EditText)v.findViewById(R.id.medicationNameText);
-        medicationTypeText= (EditText)v.findViewById(R.id.medicationTypeText);
+        datePickerText= (EditText)v.findViewById(R.id.datePickerText);
+        datePickerText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Calendar c = Calendar.getInstance();
+                int year = c.get(Calendar.YEAR);
+                int month = c.get(Calendar.MONTH);
+                int day = c.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog = new DatePickerDialog(getActivity(),android.R.style.Theme_Material_Dialog_NoActionBar_MinWidth,mDateSetListener,year,month,day);
+
+                dialog.show();
+            }
+        });
+
+
         addMedicationBtn =(Button)v.findViewById(R.id.addMedicationBtn);
+        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
         addMedicationBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                if( medicationNameText.getText().toString().trim().equals("") || medicationTypeText.getText().toString().trim().equals("") )
-                {
 
+                String descriptionTypeText = db.isFieldExist(DataBaseNote.DESCRIPTION_NAME,medicationNameText.getText().toString());
+
+                if( medicationNameText.getText().toString().trim().equals("") || datePickerText.getText().toString().trim().equals("") || descriptionTypeText.equals("N/A") )
+                {
+                    alertDialogBuilder.setMessage("Something went Wrong").setCancelable(true);
+                    AlertDialog alert = alertDialogBuilder.create();
+                    alert.setTitle("Opps!!!");
+                    alert.show();
                 } else {
-                    String pattern = "yyyy-MM-dd";
-                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-                    String date = simpleDateFormat.format(new Date());
-                    db.insertNode(medicationNameText.getText().toString(), date,medicationTypeText.getText().toString());
+                    db.insertNode(medicationNameText.getText().toString(), datePickerText.getText().toString(),descriptionTypeText);
                     if(activity instanceof HomeActivity){
                         HomeActivity homeActivity = (HomeActivity) activity;
                         homeActivity.loadFragment(new MainFragment());
@@ -99,8 +129,20 @@ public class AddMedicationFragment extends Fragment {
                 }
             }
         });
+
+        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month++;
+
+                date = year+"-"+(month<=9 ? "0"+month:month)+"-"+(day<=9 ? "0"+day:day);
+                datePickerText.setText(date);
+            }
+        };
+
         return v;
     }
+
 
     /**
      * @param context
@@ -139,4 +181,5 @@ public class AddMedicationFragment extends Fragment {
         // TODO: Update argument type and name
         void onAddMedicationFragmentInteraction(Uri uri);
     }
+
 }

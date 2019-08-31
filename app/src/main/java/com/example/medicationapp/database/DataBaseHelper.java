@@ -5,14 +5,18 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
 import androidx.annotation.Nullable;
+
 import com.example.medicationapp.model.DataBaseNote;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
-    * DataBaseHelper class:
-    * function - This class is used to get data from sqlite local database
+ * DataBaseHelper class:
+ * function - This class is used to get data from sqlite local database
  */
 
 public class DataBaseHelper extends SQLiteOpenHelper {
@@ -23,8 +27,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "medication_dB";
 
     /**
-     * @param db
-     * create new table
+     * @param db create new table
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -32,9 +35,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * @param context
-     * constructor for creating
-     * new table by name DATABASE_NAME
+     * @param context constructor for creating
+     *                new table by name DATABASE_NAME
      */
     public DataBaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -43,8 +45,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     /**
      * @param db
      * @param oldVersion
-     * @param newVersion
-     * For updating database
+     * @param newVersion For updating database
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -67,9 +68,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         values.put(DataBaseNote.DESCRIPTION_NAME, descriptionName);
         values.put(DataBaseNote.DESCRIPTION_TIMESTATMP, descriptionTimestamp);
         values.put(DataBaseNote.TYPE_DESCRIPTION, typeDescription);
-        db.insert(DataBaseNote.TABLE_NAME,null,values);
+        db.insert(DataBaseNote.TABLE_NAME, null, values);
         db.close();
     }
+
     /**
      * @return List<DataBaseNote> - list of all the
      * elements in the databasenote
@@ -103,12 +105,37 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         // return notes list
         return notes;
     }
+
     /**
-        * removeAll
-        * function: Removes all the data from database
+     * removeAll
+     * function: Removes all the data from database
      */
     public void removeAll() {
         SQLiteDatabase db = this.getWritableDatabase(); // helper is object extends SQLiteOpenHelper
         db.delete(DataBaseNote.TABLE_NAME, null, null);
+    }
+
+    /**
+     *
+     * @param dbfield
+     * @param value
+     * @return N/A or medicationType
+     *
+     * Query to recover record type.
+     */
+    public String isFieldExist(String dbfield, String value) {
+        String tableName = DataBaseNote.TABLE_NAME;
+        String recoverField = DataBaseNote.TYPE_DESCRIPTION;
+        String Query = "Select "+ recoverField + " from " + tableName + " where " + dbfield + " = \"" + value + "\";";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery(Query, null);
+        if (res.getCount() <= 0) {
+            res.close();
+            return "N/A";
+        }
+        res.moveToFirst();
+        String type =  res.getString(0);
+        res.close();
+        return type;
     }
 }
